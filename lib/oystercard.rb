@@ -2,12 +2,15 @@ require 'pry'
 class Oystercard
 attr_reader :balance
 attr_reader :entry_station
+attr_reader :list_of_journeys
+attr_reader :exit_station
 
 MAXIMUM_VALUE = 90
 MINIMUM_VALUE = 1
 
   def initialize
     @balance = 0
+    @list_of_journeys = []
   end
 
   def top_up(value)
@@ -20,8 +23,9 @@ MINIMUM_VALUE = 1
     @entry_station = true
   end
 
-  def touch_out
+  def touch_out(exit_station)
     deduct(MINIMUM_VALUE)
+    list_of_journeys << { entry_station: entry_station, exit_station: exit_station }
     @entry_station = nil
   end
 
@@ -36,5 +40,5 @@ def deduct(fare)
 end
 
 
-  #binding.pry
+  # binding.pry
 end
