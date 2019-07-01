@@ -4,6 +4,7 @@ attr_reader :balance
 attr_accessor :in_journey
 
 MAXIMUM_VALUE = 90
+MINIMUM_VALUE = 1
 
   def initialize
     @balance = 0
@@ -19,6 +20,7 @@ MAXIMUM_VALUE = 90
   end
 
   def touch_in
+    fail 'Balance below £1, please top up' if @balance < MINIMUM_VALUE
     @in_journey = true
   end
 

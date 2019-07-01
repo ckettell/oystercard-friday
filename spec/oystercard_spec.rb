@@ -34,4 +34,8 @@ describe Oystercard do
     expect(subject.in_journey?).to eq false
   end
 
+  it 'raises an error if balance is below £1' do
+    expect { subject.touch_in }.to raise_error "Balance below £1, please top up"
+  end
+
 end
