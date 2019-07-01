@@ -15,22 +15,26 @@ MINIMUM_VALUE = 1
     @balance += value
   end
 
-  def deduct(fare)
-    @balance -= fare
-  end
-
   def touch_in
     fail 'Balance below £1, please top up' if @balance < MINIMUM_VALUE
     @in_journey = true
   end
 
   def touch_out
+    deduct(MINIMUM_VALUE)
     @in_journey = false
   end
 
   def in_journey?
     @in_journey
   end
+
+private
+
+def deduct(fare)
+  @balance -= fare
+end
+
 
   #binding.pry
 end
