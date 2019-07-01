@@ -42,7 +42,7 @@ describe Oystercard do
   end
 
   it 'card has empty list of journeys by default' do
-    expect(subject.list_of_journeys).to eq []
+    expect(subject.list_of_journeys).to be_empty
   end
 
   it 'touching in and out creates one journey' do
@@ -51,5 +51,6 @@ describe Oystercard do
     subject.touch_out(exit_station)
     expect(subject.list_of_journeys.length).to eq 1
   end
+
 
 end
