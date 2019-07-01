@@ -1,7 +1,7 @@
 require 'pry'
 class Oystercard
 attr_reader :balance
-attr_accessor :in_journey
+attr_reader :entry_station
 
 MAXIMUM_VALUE = 90
 MINIMUM_VALUE = 1
@@ -15,18 +15,18 @@ MINIMUM_VALUE = 1
     @balance += value
   end
 
-  def touch_in
+  def touch_in(entry_station)
     fail 'Balance below £1, please top up' if @balance < MINIMUM_VALUE
-    @in_journey = true
+    @entry_station = true
   end
 
   def touch_out
     deduct(MINIMUM_VALUE)
-    @in_journey = false
+    @entry_station = nil
   end
 
   def in_journey?
-    @in_journey
+    !!entry_station
   end
 
 private
