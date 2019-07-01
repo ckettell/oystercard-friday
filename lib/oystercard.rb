@@ -1,6 +1,7 @@
 require 'pry'
 class Oystercard
 attr_reader :balance
+attr_accessor :in_journey
 
 MAXIMUM_VALUE = 90
 
@@ -16,5 +17,18 @@ MAXIMUM_VALUE = 90
   def deduct(fare)
     @balance -= fare
   end
+
+  def touch_in
+    @in_journey = true
+  end
+
+  def touch_out
+    @in_journey = false
+  end
+
+  def in_journey?
+    @in_journey
+  end
+
   #binding.pry
 end

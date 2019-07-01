@@ -21,4 +21,17 @@ describe Oystercard do
     expect(subject.balance).to eq (8)
   end
 
+  it 'card is in journey if it is touched in' do
+    subject.top_up(50)
+    subject.touch_in
+    expect(subject.in_journey?).to eq true
+  end
+
+  it 'card is not in journey if touched out' do
+    subject.top_up(50)
+    subject.touch_in
+    subject.touch_out
+    expect(subject.in_journey?).to eq false
+  end
+
 end
