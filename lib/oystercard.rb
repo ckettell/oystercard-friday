@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 class Oystercard
 attr_accessor :balance
 attr_reader :entry_station

@@ -29,8 +29,18 @@ describe Journey do
   it 'touching in and out creates one journey' do
     subject.touch_in(entry_station, oystercard)
     subject.touch_out(exit_station, oystercard)
-    expect(subject.list_of_journeys.length).to eq 1
+    expect(subject.list_of_journeys.length).to eq Oystercard::MINIMUM_VALUE
   end
 
+  it 'returns penalty fare if there was no entry station' do
+    subject.entry_station
+    subject.fare
+    expect(subject.fare).to eq 6
+  end
+
+  it 'return minimum fare if the entry station is given' do
+    subject.touch_in(entry_station, oystercard)
+    expect(subject.fare).to eq Oystercard::MINIMUM_VALUE
+  end
 
 end
