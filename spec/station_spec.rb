@@ -1,13 +1,8 @@
 require 'station'
+
 describe Station do
-
-  subject {described_class.new(name: "Old Street", zone: 1)}
-
-  it 'knows its name' do
-    expect(subject.name).to eq("Old Street")
-  end
-
-  it 'knows its zone' do
-    expect(subject.zone).to eq(1)
+  it 'tells the user which zone it is in' do
+    denmark_hill = Station.new("Denmark Hill", 2)
+    expect(denmark_hill.zone).to eq 2
   end
 end

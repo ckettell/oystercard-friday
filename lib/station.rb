@@ -1,14 +1,9 @@
-require 'pry'
-
 class Station
+  attr_reader :zone
 
-  attr_accessor :name, :zone
-
-
-  def initialize(name)
-    p @name = name
-    # p @zone = zone
+  def initialize(name, zone)
+    @name = name
+    @zone = zone
   end
-# binding.pry
 
 end
