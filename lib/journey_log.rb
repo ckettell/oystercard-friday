@@ -10,6 +10,7 @@ class JourneyLog
   end
 
   def start(entry_station)
+    @current_journey = []
     @in_journey = true
     @current_journey << {entry_station: entry_station}
 
@@ -19,7 +20,6 @@ class JourneyLog
     @in_journey = false
     @current_journey << {exit_station: exit_station}
     @journey_log << @current_journey
-    @current_journey = []
 
   end
 
@@ -29,7 +29,7 @@ class JourneyLog
 
   def journeys
     @journey_log.each do |journey|
-      return "Entry Station: #{@journey_log[:entry_station]}, Exit Station: #{@journey_log[:exit_station]}"
+      return "Entry Station: #{journey[:entry_station]}, Exit Station: #{journey[:exit_station]}"
     end
 
   end

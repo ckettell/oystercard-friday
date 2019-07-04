@@ -46,9 +46,10 @@ describe JourneyLog do
       subject.finish(exit_station)
       subject.start(entry_station)
       subject.finish(exit_station)
+      p subject.journey_log
       expect(subject.journeys).to eq 'Entry Station: entry_station, Exit Station: exit_station \n Entry Station: entry_station, Exit Station: exit_station'
     end
-  end 
+  end
 
 
 end
