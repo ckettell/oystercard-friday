@@ -4,6 +4,7 @@ class Journey
   attr_reader :list_of_journeys
   attr_reader :exit_station
   attr_reader :balance
+  attr_reader :fare
 
   PENALTY_FARE = 6
 

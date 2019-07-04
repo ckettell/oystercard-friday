@@ -1,4 +1,9 @@
 # require 'pry'
+
+require_relative './station'
+require_relative './journey_log'
+require_relative './journey'
+
 class Oystercard
 attr_accessor :balance
 attr_reader :entry_station
