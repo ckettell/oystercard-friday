@@ -1,6 +1,7 @@
 class JourneyLog
   attr_reader :journey_class
-  attr_reader :current_journey
+  attr_reader :current_journey, :journey_log
+
 
   def initialize(journey_class = Journey.new)
     @journey_class = journey_class
@@ -28,8 +29,8 @@ class JourneyLog
   end
 
   def journeys
-    @journey_log.each do |journey|
-      return "Entry Station: #{journey[:entry_station]}, Exit Station: #{journey[:exit_station]}"
+    @journey_log.each do |key, value|
+      return "Entry Station: #{key[:entry_station]}, Exit Station: #{value[:exit_station]}"
     end
 
   end

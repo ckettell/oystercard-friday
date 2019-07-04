@@ -42,12 +42,9 @@ describe JourneyLog do
 
   describe '#journeys' do
     it 'prints a list of previous journeys' do
-      subject.start(entry_station)
-      subject.finish(exit_station)
-      subject.start(entry_station)
-      subject.finish(exit_station)
-      p subject.journey_log
-      expect(subject.journeys).to eq 'Entry Station: entry_station, Exit Station: exit_station \n Entry Station: entry_station, Exit Station: exit_station'
+      subject.start("Waterloo")
+      subject.finish("Paddington")
+      expect(subject.journeys).to eq "Entry Station: Waterloo, Exit Station: Paddington"
     end
   end
 
