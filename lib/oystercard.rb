@@ -13,6 +13,7 @@ MAXIMUM_VALUE = 90
   def initialize
     @balance = 0
     @current_journey = nil
+    # @journey_log = JourneyLog.new
   end
 
   def top_up(value)
@@ -20,14 +21,15 @@ MAXIMUM_VALUE = 90
     @balance += value
   end
 
-  def touch_in(entry_station)
-    @current_journey = Journey.new(entry_station)
+  def touch_in(entry_station, journey = Journey)
+    @current_journey = journey.new(entry_station)
     fail 'Balance below £1, please top up' if @balance < Journey::MINIMUM_VALUE
     @entry_station = entry_station
   end
 
   def touch_out(exit_station)
-    self.deduct(Journey::MINIMUM_VALUE)
+    @current_journey.finish(exit_station)
+    self.deduct(@current_journey.fare)
     @current_journey = nil
   end
 # private
