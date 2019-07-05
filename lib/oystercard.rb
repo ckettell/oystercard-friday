@@ -8,7 +8,7 @@ class Oystercard
 attr_reader :current_journey, :balance
 
 MAXIMUM_VALUE = 90
-MINIMUM_VALUE = 1
+
 
   def initialize
     @balance = 0
@@ -22,12 +22,12 @@ MINIMUM_VALUE = 1
 
   def touch_in(entry_station)
     @current_journey = Journey.new(entry_station)
-    fail 'Balance below £1, please top up' if @balance < MINIMUM_VALUE
+    fail 'Balance below £1, please top up' if @balance < Journey::MINIMUM_VALUE
     @entry_station = entry_station
   end
 
   def touch_out(exit_station)
-    self.deduct(MINIMUM_VALUE)
+    self.deduct(Journey::MINIMUM_VALUE)
     @current_journey = nil
   end
 # private
