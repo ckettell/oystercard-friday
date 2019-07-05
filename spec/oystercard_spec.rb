@@ -8,6 +8,37 @@ describe Oystercard do
     expect(subject.balance).to eq(0)
   end
 
+  context 'Setting topup to £10' do
+    before do
+      subject.top_up(10)
+    end
+
+    it 'Card creates new journey and saves when touched in' do
+      subject.touch_in(entry_station)
+      expect(subject.current_journey).to be_a Journey
+    end
+
+    it 'card is not in journey if touched out' do
+      subject.touch_in(entry_station)
+      subject.touch_out(exit_station)
+      expect(subject.current_journey).to eq nil
+    end
+
+
+
+    it 'minuses fare from the Oystercard' do
+
+      subject.touch_in(entry_station)
+      subject.touch_out(exit_station)
+      expect(subject.balance).to be 9
+    end
+  end
+
+    it 'raises an error if balance is below £1' do
+      expect { subject.touch_in(entry_station) }.to raise_error "Balance below £1, please top up"
+    end
+
+
   it 'tops up card balance' do
     subject.top_up(5)
     expect(subject.balance).to eq (5)
@@ -17,15 +48,5 @@ describe Oystercard do
     subject.top_up(Oystercard::MAXIMUM_VALUE)
     expect { subject.top_up(1) }.to raise_error "Card balance cannot exceed £#{Oystercard::MAXIMUM_VALUE}"
   end
-
-  # it 'deducts the minimum fare from balance when you touch out' do
-  #   journey = Journey.new
-  #   subject.top_up(10)
-  #   oystercard = Oystercard.new
-  #   p subject
-  #   journey.touch_in(entry_station, oystercard)
-  #   p expect { journey.touch_out(exit_station, oystercard) }.to change {oystercard.balance}.by(-1)
-  # end
-
 
 end
